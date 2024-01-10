@@ -1,0 +1,16 @@
+---
+- name: Install Sudo
+  ansible.builtin.apt:
+    name: sudo
+    state: present
+
+- name: Config sudo
+  copy:
+    content: "{{ username }} ALL=(ALL:ALL) NOPASSWD:ALL\n"
+    dest: /etc/sudoers.d/{{ username }}
+    mode: 0440
+
+- name: Add user to Sudo group
+  ansible.builtin.user:
+    name: "{{ username }}"
+    group: sudo
