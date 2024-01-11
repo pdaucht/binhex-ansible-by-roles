@@ -1,5 +1,5 @@
 - name: add-admin-user
-  hosts: all
+  hosts: "{{ host }}"
   gather_facts: false
   vars:
     usersdata: "{{ lookup('file', 'admin-user.json') | from_json }}"

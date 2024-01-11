@@ -1,5 +1,5 @@
 - name: add-user
-  hosts: all
+  hosts: "{{ host }}"
   gather_facts: false
   vars:
     usersdata: "{{ lookup('file', 'systen-user.json') | from_json }}"

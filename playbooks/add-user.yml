@@ -1,5 +1,5 @@
 - name: add-user
-  hosts: all
+  hosts: "{{ host }}"
   gather_facts: false
   roles:
     - user-without-ssh
