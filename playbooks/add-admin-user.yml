@@ -1,6 +1,8 @@
 - name: add-admin-user
   hosts: all
   gather_facts: false
+  vars:
+    usersdata: "{{ lookup('file', 'admin-user.json') | from_json }}"
   roles:
     - user-with-ssh
     - user-sudo

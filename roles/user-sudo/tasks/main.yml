@@ -6,9 +6,10 @@
 
 - name: Config sudo
   copy:
-    content: "{{ username }} ALL=(ALL:ALL) NOPASSWD:ALL\n"
-    dest: /etc/sudoers.d/{{ username }}
+    content: "{{ item.username }} ALL=(ALL:ALL) NOPASSWD:ALL\n"
+    dest: /etc/sudoers.d/{{ item.username }}
     mode: 0440
+  with_items: "{{ usersdata.users }}"
 
 - name: Add user to Sudo group
   ansible.builtin.user:
