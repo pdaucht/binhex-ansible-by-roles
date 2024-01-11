@@ -1,0 +1,10 @@
+- name: add-admin-user
+  hosts: localhost
+  gather_facts: false
+  vars:
+    domain: "binhex.cloud"
+    dnsrecords: "{{ lookup('file', 'dns.json') | from_json }}"
+    apitoken: "ZIcdybXr42m8meUstgFHK-gzhgVa9HVhkvS0A5dT"
+
+  roles:
+    - add-dns-a-record

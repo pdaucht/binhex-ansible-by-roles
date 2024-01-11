@@ -1,0 +1,49 @@
+{
+    "dns":[
+            {
+                "host" : "anakin-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "5.196.214.72"
+            },
+            {
+                "host" : "daenerys-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "162.19.167.140"
+            },
+            {
+                "host" : "drogon-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "192.99.98.223"
+            },
+            {
+                "host" : "eddard-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "51.77.70.25"
+            },
+            {
+                "host" : "jaime-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "142.4.204.126"
+            },
+            {
+                "host" : "obiwan-pr.binhex.cloud",
+                "type" : "A",
+                "ip" :  "178.32.84.48"
+            },
+            {
+                "host" : "robb-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "51.89.19.234"
+            },
+            {
+                "host" : "snow-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "51.195.56.64"
+            },
+            {
+                "host" : "tyrion-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "51.38.119.220"
+            }
+        ]
+}

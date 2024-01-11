@@ -1,0 +1,10 @@
+---
+- name: ADDING CNAME RECORD ON CLOUDFLARE
+  community.general.cloudflare_dns:
+    zone: "{{ domain }}"
+    record: "{{ item.host }}"
+    type: "{{ item.type }}"
+    value: "{{ item.ip }}"
+    api_token: "{{apitoken}}"
+    state: present
+  with_items: "{{ dnsrecords.dns }}"
