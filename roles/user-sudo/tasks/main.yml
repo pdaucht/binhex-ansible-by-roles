@@ -13,5 +13,6 @@
 
 - name: Add user to Sudo group
   ansible.builtin.user:
-    name: "{{ username }}"
+    name: "{{ item.username }}"
     group: sudo
+  with_items: "{{ usersdata.users }}"
