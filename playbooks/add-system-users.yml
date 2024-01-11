@@ -1,0 +1,7 @@
+- name: add-user
+  hosts: all
+  gather_facts: false
+  vars:
+    usersdata: "{{ lookup('file', 'systen-user.json') | from_json }}"
+  roles:
+    - user-without-ssh

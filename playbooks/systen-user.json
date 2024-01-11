@@ -1,0 +1,14 @@
+{
+    "users":[
+        { 
+            "username" : "odoo",
+            "key"      :  "odoo"
+        },
+        {
+            "username" : "jenkins",
+            "key"      :  "jenkins"
+
+        }
+    ]
+    
+}
