@@ -1,0 +1,39 @@
+---
+- name: CREATE NOLOGIN USER
+  user:
+    name: "{{ item.username }}"
+    shell: /sbin/nologin
+    append: yes
+    state: present
+  become: true
+  when: item.shell == "false"
+  with_items: "{{ data.users }}"
+
+- name: CREATE LOGIN USER
+  user:
+    name: "{{ item.username }}"
+    shell: /bin/bash
+    state: present
+  become: true
+  when: (item.shell == "true") and (item.password is undefined)
+  with_items: "{{ data.users }}"
+
+- name: CREATE LOGIN USER WITH PASSWORD
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    state: present
+    shell: /bin/bash
+    password: "{{ item.password | password_hash('sha512') }}"
+    update_password: on_create
+    groups: "sudo"
+    append: yes
+  when: (item.shell == "true") and (item.password is defined)
+  with_items: "{{ data.users }}"
+
+- name: Set SSH KEY
+  ansible.posix.authorized_key:
+    user: "{{ item.username }}"
+    state: present
+    key: "{{ lookup('file', '{{ item.key }}.pub') }}"
+  when: item.key is defined
+  with_items: "{{ data.users }}"

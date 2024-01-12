@@ -9,10 +9,10 @@
     content: "{{ item.username }} ALL=(ALL:ALL) NOPASSWD:ALL\n"
     dest: /etc/sudoers.d/{{ item.username }}
     mode: 0440
-  with_items: "{{ usersdata.users }}"
+  with_items: "{{ data.users }}"
 
 - name: Add user to Sudo group
   ansible.builtin.user:
     name: "{{ item.username }}"
     group: sudo
-  with_items: "{{ usersdata.users }}"
+  with_items: "{{ data.users }}"

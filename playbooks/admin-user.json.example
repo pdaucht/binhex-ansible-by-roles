@@ -3,17 +3,20 @@
         { 
             "username" : "anavarro",
             "password" : "ultr@Koala99",
-            "key"      :  "anavarro"
+            "key"      :  "anavarro",
+            "shell"    : "true"
         },
         {
             "username" : "srodriguez",
             "password" : "S4mu3lp3t3r84*",
-            "key"      :  "srodriguez"
+            "key"      :  "srodriguez",
+            "shell"    : "true"
 
         },
         {
             "username" : "jelena",
-            "password" : "<eenBook94"
+            "password" : "<eenBook94",
+            "shell"    : "true"
 
         }
     ]
