@@ -14,6 +14,7 @@
     content: "{{ item.username }} ALL=(ALL:ALL) NOPASSWD:ALL\n"
     dest: /etc/sudoers.d/{{ item.username }}
     mode: 0440
+  when: item.sudo is defined
   with_items: "{{ data.users }}"
 
 - name: Add user to Sudo group
