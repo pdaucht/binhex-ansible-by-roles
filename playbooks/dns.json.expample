@@ -1,0 +1,19 @@
+{
+    "dns":[
+            {
+                "host" : "bombaata-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "178.33.114.207"
+            },
+            {
+                "host" : "zula-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "178.32.44.15"
+            },
+            {
+                "host" : "yoda-pr.binhex.cloud",
+                "type" : "A",
+                "ip" : "152.228.179.252"
+            }
+        ]
+}
