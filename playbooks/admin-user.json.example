@@ -3,12 +3,14 @@
         { 
             "username" : "anavarro",
             "password" : "ultr@Koala99",
+            "sudo" : "true",
             "key"      :  "anavarro",
             "shell"    : "true"
         },
         {
             "username" : "srodriguez",
             "password" : "S4mu3lp3t3r84*",
+            "sudo" : "true",
             "key"      :  "srodriguez",
             "shell"    : "true"
 
@@ -16,6 +18,7 @@
         {
             "username" : "jelena",
             "password" : "<eenBook94",
+            "sudo" : "true",
             "shell"    : "true"
 
         }

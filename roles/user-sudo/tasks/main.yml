@@ -3,7 +3,7 @@
   ansible.builtin.apt:
     update_cache: yes
     cache_valid_time: 3600
-    
+
 - name: Install Sudo
   ansible.builtin.apt:
     name: sudo
@@ -20,4 +20,5 @@
   ansible.builtin.user:
     name: "{{ item.username }}"
     group: sudo
+  when: item.sudo is defined
   with_items: "{{ data.users }}"
