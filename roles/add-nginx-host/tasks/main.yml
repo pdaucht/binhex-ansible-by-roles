@@ -1,7 +1,7 @@
 ---
 - name: Create NGINX VirtualHost
   template:
-    src: "{{ item.odoov }}.conf.j2"
+    src: "files/{{ item.odoov }}.conf.j2"
     dest: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
   with_items: "{{ data.vhost }}"
 
