@@ -7,13 +7,23 @@
             },
             {
                 "host" : "zula-pr.binhex.cloud",
-                "type" : "A",
+                "type" : "CNAME",
                 "ip" : "178.32.44.15"
+            }
+        ],
+    "vhost":[
+            {
+                "odoov" : "16.0",
+                "company" : "temp",
+                "domain" : "binhex.cloud",
+                "instanceIp" : "10.1.13.24"
             },
             {
-                "host" : "yoda-pr.binhex.cloud",
-                "type" : "A",
-                "ip" : "152.228.179.252"
+                "odoov" : "16.0ee",
+                "company" : "temp2",
+                "domain" : "binhex.cloud",
+                "instanceIp" : "10.1.13.25"
             }
-        ]
+
+    ]
 }

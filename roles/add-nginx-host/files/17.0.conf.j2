@@ -1,6 +1,3 @@
-#odoo server
-#Cambiar en la linea 40 por {{ instanceIp }}:8072
-#cambiar en la linea 57 y 63 por {{ instanceIp }}:80669
 
 map $http_upgrade $connection_upgrade {
   default upgrade;
@@ -10,13 +7,13 @@ map $http_upgrade $connection_upgrade {
 # http -> https
 server {
   listen 80;
-  server_name {{ company }}.{{ domain }};
+  server_name {{ item.company }}.{{ item.domain }};
   return  301 https://$host$1$request_uri;
 }
 
 server {
   listen 443 ssl;
-  server_name {{ company }}.{{ domain }};
+  server_name {{ item.company }}.{{ item.domain }};
   proxy_read_timeout 720s;
   proxy_connect_timeout 720s;
   proxy_send_timeout 720s;
@@ -37,7 +34,7 @@ server {
 
   # Redirect websocket requests to odoo gevent port
   location /websocket {
-    proxy_pass http://{{ instanceIp }}:8072;
+    proxy_pass http://{{ item.instanceIp }}:8072;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
     proxy_set_header X-Forwarded-Host $host;
@@ -54,7 +51,7 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_redirect off;
-    proxy_pass http://{{ instanceIp }}:8069;
+    proxy_pass http://{{ item.instanceIp }}:8069;
   }
   #acceso a las BBDD
   location ~* /web/database/(manager|selector) {
@@ -65,7 +62,7 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_redirect off;
-    proxy_pass http://{{ instanceIp }}:8069;
+    proxy_pass http://{{ item.instanceIp }}:8069;
   }
 
   error_page 403 /custom_403.html;

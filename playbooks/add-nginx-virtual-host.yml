@@ -1,0 +1,7 @@
+- name: ADD NGINX VIRTUAL HOST
+  hosts: "{{ host }}"
+  gather_facts: false
+  vars:
+    data: "{{ lookup('file', 'dns.json') | from_json }}"
+  roles:
+    - add-nginx-host
