@@ -1,16 +1,5 @@
 ---
 - name: Create NGINX VirtualHost
-  template:
-    src: "files/{{ item.odoov }}.conf.j2"
-    dest: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
+  debug:
+    msg: "{{ item.odoov[:]4 }}"
   with_items: "{{ data.vhost }}"
-
-- name: Create NGINX VirtualHost_symbLink
-  file:
-    src: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
-    dest: /etc/nginx/sites-enabled/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
-    state: link
-  with_items: "{{ data.vhost }}"
-   
-- name: restart_nginx
-  service: name=nginx state=reloaded
