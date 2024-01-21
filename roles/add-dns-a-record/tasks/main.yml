@@ -1,7 +1,7 @@
 ---
 - name: ADDING CNAME RECORD ON CLOUDFLARE
   community.general.cloudflare_dns:
-    zone: "{{ domain }}"
+    zone: "{{ item.domain }}"
     record: "{{ item.host }}"
     type: "{{ item.type }}"
     value: "{{ item.ip }}"

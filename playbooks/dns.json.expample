@@ -3,10 +3,12 @@
             {
                 "host" : "bombaata-pr.binhex.cloud",
                 "type" : "A",
+                "domain" : "binhex.cloud",
                 "ip" : "178.33.114.207"
             },
             {
                 "host" : "zula-pr.binhex.cloud",
+                "domain" : "binhex.cloud",
                 "type" : "CNAME",
                 "ip" : "178.32.44.15"
             }
