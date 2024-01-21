@@ -1,16 +1,8 @@
 ---
 - name: Create NGINX VirtualHost 
   template:
-    src: "files/{{ item.odoov }}.conf.j2"
-    dest: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
-  when: item.odoov [4:] != "ee"
-  with_items: "{{ data.vhost }}"
-
-- name: Create NGINX VirtualHost
-  template:
     src: "files/{{ item.odoov [:4] }}.conf.j2"
     dest: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
-  when: item.odoov [4:] == "ee"
   with_items: "{{ data.vhost }}"
 
 - name: Create NGINX VirtualHost_symbLink
