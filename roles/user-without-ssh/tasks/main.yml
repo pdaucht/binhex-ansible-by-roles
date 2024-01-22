@@ -6,7 +6,7 @@
     append: yes
     state: present
   become: true
-  with_items: "{{ usersdata.users }}"
+  with_items: "{{ data.users }}"
 
 - name: Set authorized key taken from file
   ansible.posix.authorized_key:
@@ -14,4 +14,4 @@
     state: present
     key: "{{ lookup('file', '{{ item.key }}.pub') }}"
   when: item.key is defined
-  with_items: "{{ usersdata.users }}"
+  with_items: "{{ data.users }}"
