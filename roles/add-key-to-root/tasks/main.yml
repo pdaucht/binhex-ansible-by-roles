@@ -1,0 +1,8 @@
+---
+- name: Set authorized key to root user
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '{{ item.key }}.pub') }}"
+  when: item.key is defined
+  with_items: "{{ data.users }}"

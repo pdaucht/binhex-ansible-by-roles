@@ -1,0 +1,16 @@
+- name: Add user to JUMP HOST
+  hosts: "{{ jumphost }}"
+  gather_facts: false
+  vars:
+    data: "{{ lookup('file', 'admin-user.json') | from_json }}"
+  roles:
+    - user-without-ssh
+
+- name: ADD user SSH KEY to HOST ROOT user
+  hosts: "{{ host }}"
+  become: true
+  gather_facts: false
+  vars:
+    data: "{{ lookup('file', 'admin-user.json') | from_json }}"
+  roles:
+    - add-key-to-root
