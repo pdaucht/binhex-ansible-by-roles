@@ -34,3 +34,6 @@ tyrion-pr.binhex.cloud
 [ANSIBLE]
 daemon-ansible.binhex.cloud
 rhaenyra-ansible.binhex.cloud
+
+[ODOO]
+vega16.binhex.cloud
