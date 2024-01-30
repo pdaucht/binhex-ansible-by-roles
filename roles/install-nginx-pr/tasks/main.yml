@@ -28,5 +28,38 @@
     src: binhex.cloud.private.crt
     dest: /etc/nginx/ssl/binhex.cloud.private.crt
 
+- name: Delete Old default symbLink && index.html
+  file:
+    path: 
+      - /etc/nginx/sites-enabled/default
+      - /usr/share/nginx/html/index.html
+    state: absent
+
+- name: Copy default VH
+  copy:
+    src: default
+    dest: /etc/nginx/sites-available/default
+
+- name: Create default VirtualHost_symbLink
+  file:
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/00-default
+    state: link
+
+- name: Copy custom_50x.html
+  copy:
+    src: custom_50x.html
+    dest: /usr/share/nginx/html/custom_50x.html
+
+- name: Copy custom_403.html
+  copy:
+    src: custom_403.html
+    dest: /usr/share/nginx/html/custom_403.html
+
+- name: Copy custom_404.html
+  copy:
+    src: custom_404.html
+    dest: /usr/share/nginx/html/custom_404.html
+
 - name: restart_nginx
   service: name=nginx state=reloaded

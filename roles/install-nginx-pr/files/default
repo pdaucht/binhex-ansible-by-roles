@@ -1,0 +1,46 @@
+server {
+    listen 443 ssl;
+    server_name _;
+    ssl_certificate /etc/nginx/ssl/binhex.cloud.full.crt;
+    ssl_certificate_key /etc/nginx/ssl/binhex.cloud.private.crt;
+
+    error_page 404 403 /custom_404.html;
+    location = /custom_404.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+    error_page 500 502 503 504 521 /custom_50x.html;
+    location = /custom_50x.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+}
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+
+	error_page 404 403 /custom_404.html;
+    location = /custom_404.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+    error_page 500 502 503 504 521 /custom_50x.html;
+    location = /custom_50x.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+	
+}
