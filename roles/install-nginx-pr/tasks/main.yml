@@ -1,0 +1,32 @@
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400
+
+- name: Install Nginx
+  ansible.builtin.apt:
+    name: 
+      - nginx
+      - certbot
+      - python3-certbot-nginx
+    state: present
+
+- name: Create nginx ssl folder
+  file:
+    path: "/etc/nginx/ssl"
+    state: directory
+
+- name: Copy CRT full Certificates
+  copy:
+    src: binhex.cloud.full.crt
+    dest: /etc/nginx/ssl/binhex.cloud.full.crt
+
+- name: Copy CRT private Certificates
+  copy:
+    src: binhex.cloud.private.crt
+    dest: /etc/nginx/ssl/binhex.cloud.private.crt
+
+- name: restart_nginx
+  service: name=nginx state=reloaded

@@ -1,0 +1,6 @@
+- name: Install NGINX PR
+  hosts: "{{ host }}"
+  become: true
+  gather_facts: false
+  roles:
+    - install-nginx-pr
