@@ -2,3 +2,6 @@ ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud"}'
 
 Grant User permition to access to container through JUMP HOST
 ansible-playbook --extra-vars '{"jumphost":"daemon-pr.binhex.cloud", "host":"odoo16ce.binhex.cloud"}'
+
+Install zabbix
+ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud","zserver":"zabbix-server"}'

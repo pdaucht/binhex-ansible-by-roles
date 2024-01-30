@@ -1,0 +1,6 @@
+- name: Install Zabbix on Proxmox
+  hosts: "{{ host }}"
+  gather_facts: false
+  become: true
+  roles:
+    - install-zabbix-proxmox

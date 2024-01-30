@@ -1,0 +1,22 @@
+- name: Install zabbix-agent
+  ansible.builtin.package:
+    name: zabbix-agent
+    state: present
+
+- name: Config Zabbix Agent
+  template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+
+- name: Add PROXMOX CONFIG
+  ansible.builtin.copy:
+      src: proxmox.conf
+      dest: /etc/zabbix/zabbix_agentd.conf.d/proxmox.conf
+      owner: root
+      group: root
+      mode: '0644'
+    
+- name: Restart service zabbix-agent
+  ansible.builtin.service:
+    name: zabbix-agent
+    state: restarted

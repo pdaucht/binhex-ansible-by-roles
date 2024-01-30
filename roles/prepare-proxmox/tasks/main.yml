@@ -1,0 +1,5 @@
+
+- name: Config proxmox repo
+  copy:
+    content: "{{ item.username }} ALL=(ALL:ALL) NOPASSWD:ALL\n"
+    dest: /etc/apt/sources.list.d/pve-enterprise.list

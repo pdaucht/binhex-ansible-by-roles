@@ -1,0 +1,10 @@
+- name: Prepare proxmox server
+  hosts: "{{ host }}"
+  become: true
+  gather_facts: false
+  vars:
+    data: "{{ lookup('file', 'admin-user.json') | from_json }}"
+  roles:
+    - add-generic-user
+    - user-sudo
+    - install-zabbix-proxmox
