@@ -5,6 +5,7 @@
   vars:
     data: "{{ lookup('file', 'admin-user.json') | from_json }}"
   roles:
+    - prepare-proxmox
     - add-generic-user
     - user-sudo
     - install-zabbix-proxmox
