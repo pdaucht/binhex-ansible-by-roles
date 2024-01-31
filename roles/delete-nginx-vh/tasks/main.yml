@@ -1,0 +1,14 @@
+- name: Delete VirtualHost SymbLink
+  ansible.builtin.file:
+    dest: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
+    state: absent
+  with_items: "{{ data.vhost }}"
+
+- name: Delete VirtualHost
+  ansible.builtin.file:
+    dest: /etc/nginx/sites-enabled/{{ item.odoov }}.{{ item.company }}.{{ item.domain }}
+    state: absent
+  with_items: "{{ data.vhost }}"
+
+- name: restart_nginx
+  service: name=nginx state=reloaded

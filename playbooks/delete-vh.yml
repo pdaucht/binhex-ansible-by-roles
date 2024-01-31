@@ -1,0 +1,8 @@
+- name: DELETE NGINX VIRTUAL HOST
+  hosts: "{{ host }}"
+  become: true
+  gather_facts: false
+  vars:
+    data: "{{ lookup('file', 'dns.json') | from_json }}"
+  roles:
+    - delete-nginx-vh

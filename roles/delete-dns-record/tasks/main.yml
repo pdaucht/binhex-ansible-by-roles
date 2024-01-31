@@ -1,0 +1,3 @@
+- name: DELETE DNS RECORD
+  ansible.builtin.script: delete.dns.record.sh --some-argument "{{ item.host }}" "{{ item.domain }}"
+  with_items: "{{ dnsrecords.dns }}"
