@@ -2,7 +2,7 @@
 
   
   RECORD=$1
-  CF_TOKEN="-8shOhBUEV7icCYlMx_n8uTZrGGX6FfyRL2w_lRe"
+  CF_TOKEN="ZIcdybXr42m8meUstgFHK-gzhgVa9HVhkvS0A5dT"
   ZONE_NAME=$2
 
   ZONE_ID=$(
