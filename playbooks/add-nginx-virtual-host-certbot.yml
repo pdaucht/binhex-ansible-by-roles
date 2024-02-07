@@ -1,0 +1,8 @@
+- name: ADD NGINX VIRTUAL HOST CERTBOT
+  hosts: "{{ host }}"
+  become: true
+  gather_facts: false
+  vars:
+    data: "{{ lookup('file', 'dns.json') | from_json }}"
+  roles:
+    - add-nginx-host

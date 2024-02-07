@@ -1,0 +1,20 @@
+---
+- name: Create NGINX VirtualHost 
+  template:
+    src: "files/{{ item.odoov [:4] }}.conf.j2"
+    dest: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.domain }}
+  with_items: "{{ data.vhost }}"
+
+- name: Create NGINX VirtualHost_symbLink
+  file:
+    src: /etc/nginx/sites-available/{{ item.odoov }}.{{ item.domain }}
+    dest: /etc/nginx/sites-enabled/{{ item.odoov }}.{{ item.domain }}
+    state: link
+  with_items: "{{ data.vhost }}"
+
+- name: Create cerbot certificate
+  shell: certbot --nginx -d {{ item.domain }}
+  with_items: "{{ data.vhost }}"
+
+- name: restart_nginx
+  service: name=nginx state=reloaded
