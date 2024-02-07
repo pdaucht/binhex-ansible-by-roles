@@ -14,8 +14,10 @@ drogon.binhex.us
 daemon.binhex.es
 harry.binhex.es
 rhaenyra.binhex.cloud
+joffrey.binhex.cloud
 
 [NGINX]
+joffrey-pr.binhex.cloud
 daemon-pr.binhex.cloud
 viserys-pr.binhex.cloud
 bombaata-pr.binhex.cloud
