@@ -1,5 +1,4 @@
 - name: Update and upgrade apt packages
-  become: true
   apt:
     upgrade: yes
     update_cache: yes
@@ -30,10 +29,12 @@
 
 - name: Delete Old default symbLink && index.html
   file:
-    path: 
-      - /etc/nginx/sites-enabled/default
-      - /usr/share/nginx/html/index.html
+    path: "{{ item }}"
     state: absent
+  with_items: 
+    - /etc/nginx/sites-enabled/default
+    - /usr/share/nginx/html/index.html
+
 
 - name: Copy default VH
   copy:
