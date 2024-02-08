@@ -1,0 +1,11 @@
+- name: Get Directory list
+  shell:
+    chdir: "{{ home_directory }}"
+    cmd: ls -d */ 
+  register: directories
+
+- name: Performance a git pull
+  shell: git pull origin 16.0 | tee /root/{{ item [:-1] }}.log
+  args:
+    chdir: "{{ home_directory }}{{ item }}"
+  with_items: "{{ directories.stdout_lines}}"
