@@ -1,7 +1,11 @@
+- name: Get Node Identity
+  set_fact:
+    node_identity: "{{ ansible_default_ipv4.address [3:7] }}"
+
 - name: Update and upgrade apt packages
   apt:
-    upgrade: yes
-    update_cache: yes
+    upgrade: "yes"
+    update_cache: "true"
     cache_valid_time: 86400
 
 - name: Install Nginx
@@ -12,20 +16,27 @@
       - python3-certbot-nginx
     state: present
 
+- name: Add Cront to renew CertBot Certificates
+  ansible.builtin.cron:
+    name: ReNew CertBot Certificates
+    day: "1"
+    hour: "23"
+    minute: "50"
+    user: root
+    job: "certbot renew"
+
 - name: Create nginx ssl folder
   file:
     path: "/etc/nginx/ssl"
     state: directory
 
-- name: Copy CRT full Certificates
+- name: Copy Certificates
   copy:
-    src: binhex.cloud.full.crt
-    dest: /etc/nginx/ssl/binhex.cloud.full.crt
-
-- name: Copy CRT private Certificates
-  copy:
-    src: binhex.cloud.private.crt
-    dest: /etc/nginx/ssl/binhex.cloud.private.crt
+    src: "{{ item }}"
+    dest: "/etc/nginx/ssl/{{ item }}"
+  with_items: 
+    - binhex.cloud.full.crt
+    - binhex.cloud.private.crt
 
 - name: Delete Old default symbLink && index.html
   file:
@@ -35,11 +46,13 @@
     - /etc/nginx/sites-enabled/default
     - /usr/share/nginx/html/index.html
 
-
-- name: Copy default VH
+- name: Copy Defaults virtual hosts
   copy:
-    src: default
-    dest: /etc/nginx/sites-available/default
+    src: "{{ item }}"
+    dest: "/etc/nginx/sites-available/{{ item }}"
+  with_items:
+    - default
+    - mantenimiento.conf
 
 - name: Create default VirtualHost_symbLink
   file:
@@ -47,20 +60,15 @@
     dest: /etc/nginx/sites-enabled/00-default
     state: link
 
-- name: Copy custom_50x.html
-  copy:
-    src: custom_50x.html
-    dest: /usr/share/nginx/html/custom_50x.html
-
-- name: Copy custom_403.html
-  copy:
-    src: custom_403.html
-    dest: /usr/share/nginx/html/custom_403.html
-
-- name: Copy custom_404.html
-  copy:
-    src: custom_404.html
-    dest: /usr/share/nginx/html/custom_404.html
+- name: Set custom  
+  template:
+    src: "files/{{ item }}"
+    dest: /usr/share/nginx/html/{{ item [:-3] }}
+  with_items:
+    - custom_50x.html.j2
+    - custom_403.html.j2
+    - custom_404.html.j2
+    - maintenance.html.j2
 
 - name: restart_nginx
   service: name=nginx state=reloaded
