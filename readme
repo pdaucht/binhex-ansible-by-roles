@@ -5,3 +5,6 @@ ansible-playbook --extra-vars '{"jumphost":"daemon-pr.binhex.cloud", "host":"odo
 
 Install zabbix
 ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud","zserver":"zabbix-server"}'
+
+Update Oca ADDONS
+ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud", "odoov":"16.0"}'
