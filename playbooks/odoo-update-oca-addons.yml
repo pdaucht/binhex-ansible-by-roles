@@ -1,9 +1,11 @@
 - name: Update OCA ADDONS from Git
   hosts: "{{ host }}"
-  gather_facts: true
+  gather_facts: false
   become: true
   vars:
-      home_directory: "/opt/odoo-server/extra_addons/oca/"
+      addons_directory: 
+                  - "/opt/odoo-server/extra_addons/oca/"
+                  - "/opt/odoo-server/extra-addons/oca/"
   roles:
     - odoo-update-oca-addons
 
