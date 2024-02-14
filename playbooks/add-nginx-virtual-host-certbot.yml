@@ -5,4 +5,4 @@
   vars:
     data: "{{ lookup('file', 'dns.json') | from_json }}"
   roles:
-    - add-nginx-host
+    - add-nginx-host-cerbot
