@@ -1,0 +1,6 @@
+- name: Config Git ssh Key
+  hosts: "{{ host }}"
+  gather_facts: false
+  become: true
+  roles:
+    - config-key-git

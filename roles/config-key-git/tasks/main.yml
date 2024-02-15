@@ -1,0 +1,22 @@
+- name: Create .ssh directory
+  file:
+    path: "/root/.ssh"
+    state: directory
+    owner: "root"
+    group: "root"
+
+- name: Copy ssh key
+  copy:
+    src: "files/gitbinhex"
+    dest: /root/.ssh/gitbinhex
+    owner: "root"
+    group: "root"
+    mode: '0600'
+
+- name: Config SSH file
+  copy:
+    src: "files/ssh-config"
+    dest: /root/.ssh/config
+    owner: "root"
+    group: "root"
+    mode: '0644'

@@ -1,0 +1,6 @@
+Host *
+    StrictHostKeyChecking accept-new
+
+Host github.com
+  Hostname github.com
+  IdentityFile /root/.ssh/gitbinhex
