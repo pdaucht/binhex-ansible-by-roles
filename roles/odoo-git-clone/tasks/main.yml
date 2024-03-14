@@ -1,0 +1,11 @@
+- name: Create nginx ssl folder
+  file:
+    path: "/etc/nginx/ssl"
+    state: directory
+
+- name: Example clone of a single branch
+  ansible.builtin.git:
+    repo: https://github.com/ansible/ansible-examples.git
+    dest: /src/ansible-examples
+    version: master
+  with_items: "{{ dnsrecords.dns }}"

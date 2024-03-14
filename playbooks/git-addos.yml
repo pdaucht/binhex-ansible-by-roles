@@ -1,0 +1,8 @@
+- name: add-admin-user
+  hosts: localhost
+  gather_facts: false
+  vars:
+    gitrepos: "{{ lookup('file', 'git-repo.json') | from_json }}"
+
+  roles:
+    - odoo-git-clone
