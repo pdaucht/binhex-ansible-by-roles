@@ -1,8 +1,11 @@
-- name: add-admin-user
-  hosts: localhost
+- name: odoo-git-clone
+  hosts: "{{ host }}"
+  become: true
   gather_facts: false
   vars:
-    gitrepos: "{{ lookup('file', 'git-repo.json') | from_json }}"
-
+    git_repos: "{{ lookup('file', 'git-repo.json') | from_json }}"
+    addons_directory: 
+                - "/opt/odoo-server/extra_addons/"
+                - "/opt/odoo-server/extra-addons/"
   roles:
     - odoo-git-clone

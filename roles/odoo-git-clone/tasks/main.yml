@@ -1,11 +1,23 @@
-- name: Create nginx ssl folder
-  file:
-    path: "/etc/nginx/ssl"
-    state: directory
+- name: Check if the directory exists
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  register: dir_to_check
+  with_items: "{{ addons_directory }}"
 
-- name: Example clone of a single branch
-  ansible.builtin.git:
-    repo: https://github.com/ansible/ansible-examples.git
-    dest: /src/ansible-examples
-    version: master
-  with_items: "{{ dnsrecords.dns }}"
+- name: Set Addons Dir
+  set_fact:
+    addon_dir: "{{ item.stat.path }}"
+  when: item.stat.isdir is defined and item.stat.isdir
+  with_items: "{{ dir_to_check.results }}"
+
+- name: Create pool folder
+  shell: mkdir -p "{{ addon_dir }}{{ item.pool }}"
+  with_items: "{{ git_repos }}"
+
+- name: Performance a git Clone
+  shell: git clone -b {{ odoov }} {{ item.1.url }}
+  args:
+    chdir: "{{ addon_dir }}{{ item.0.pool }}"
+  with_subelements: 
+    - "{{ git_repos }}"
+    - origin
