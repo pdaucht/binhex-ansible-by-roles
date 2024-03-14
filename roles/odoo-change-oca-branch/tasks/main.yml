@@ -35,12 +35,6 @@
       cmd: ls -d */ 
     register: directories
 
-  - name: Change Branch
-    shell: git pull origin {{ odoonewbranch }} 
-    args:
-      chdir: "{{ addon_dir }}{{ item }}"
-    with_items: "{{ directories.stdout_lines}}"
-
   - name: Performance a git pull
     shell: git pull origin {{ odoov }} | tee /root/gitlog/{{ item [:-1] }}.log
     args:
