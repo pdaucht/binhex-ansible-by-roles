@@ -8,3 +8,7 @@ ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud","zserver":"zabbi
 
 Update Oca ADDONS
 ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud", "odoov":"16.0"}'
+
+
+Change Oca ADDONS branch
+ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud", "odoov":"16.0", "odoonewbranch":"14.0"}'

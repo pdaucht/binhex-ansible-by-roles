@@ -1,0 +1,12 @@
+- name: Change OCA ADDONS Git Branch
+  hosts: "{{ host }}"
+  gather_facts: false
+  become: true
+  vars:
+      addons_directory: 
+                  - "/opt/odoo-server/extra_addons/oca/"
+                  - "/opt/odoo-server/extra-addons/oca/"
+  roles:
+    - odoo-change-oca-branch
+
+   

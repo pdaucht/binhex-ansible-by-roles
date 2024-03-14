@@ -1,0 +1,56 @@
+- name: Get disk size
+  shell: df  / --output\=avail | tail -1 |  awk '{gsub(/^[ \t]+/,""); print (($0/1024)/1024) }' 
+  register: disk_size
+
+- name: Check if the directory exists
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  register: dir_to_check
+  with_items: "{{ addons_directory }}"
+
+- name: Set Addons Dir
+  set_fact:
+    addon_dir: "{{ item.stat.path }}"
+  when: item.stat.isdir is defined and item.stat.isdir
+  with_items: "{{ dir_to_check.results }}"
+
+- block:
+  - name: Stop Odoo service
+    ansible.builtin.service:
+      name: odoo
+      state: stopped
+
+  - name: Get Odoo Actual DB
+    shell: hostname
+    register: odoodb
+
+  - name: Creat GitLog Directory
+    file:
+      path: "/root/gitlog/"
+      state: directory
+
+  - name: Get Directory list
+    shell:
+      chdir: "{{ addon_dir }}"
+      cmd: ls -d */ 
+    register: directories
+
+  - name: Change Branch
+    shell: git pull origin {{ odoonewbranch }} 
+    args:
+      chdir: "{{ addon_dir }}{{ item }}"
+    with_items: "{{ directories.stdout_lines}}"
+
+  - name: Performance a git pull
+    shell: git pull origin {{ odoov }} | tee /root/gitlog/{{ item [:-1] }}.log
+    args:
+      chdir: "{{ addon_dir }}{{ item }}"
+    with_items: "{{ directories.stdout_lines}}"
+
+  when: disk_size.stdout | int >= 3 and addon_dir is defined
+
+- name: Start odoo
+  ansible.builtin.service:
+    name: odoo
+    state: started
+  when: disk_size.stdout | int >= 3 and addon_dir is defined
