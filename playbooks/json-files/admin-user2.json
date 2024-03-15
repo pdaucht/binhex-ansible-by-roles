@@ -1,0 +1,42 @@
+{
+    "users":[
+        { 
+            "username" : "anavarro",
+            "sudo" : "true",
+            "key"      :  "anavarro",
+            "shell"    : "true"
+        },
+        {
+            "username" : "srodriguez",
+            "sudo" : "true",
+            "key"      :  "srodriguez",
+            "shell"    : "true"
+
+        },
+        {
+            "username" : "odoo",
+            "shell"    : "false",
+            "key"      :  "odoo"
+
+        },
+        {
+            "username" : "jenkins",
+            "shell"    : "false",
+            "key"      :  "jenkins"
+
+        },
+        {
+            "username" : "jgonzalez",
+            "shell"    : "false",
+            "key"      :  "jgonzalez"
+
+        },
+        {
+            "username" : "zuzanna",
+            "shell"    : "false",
+            "key"      :  "zuzanna"
+
+        }
+    ]
+    
+}

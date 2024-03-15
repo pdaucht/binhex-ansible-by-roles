@@ -1,0 +1,24 @@
+{
+    "users":[
+        {
+            "username" : "cristian",
+            "shell"    : "false",
+            "key"      :  "cristian"
+
+        },
+        {
+            "username" : "jgonzalez",
+            "shell"    : "false",
+            "key"      :  "jgonzalez"
+
+        },
+        {
+            "username" : "zuzanna",
+            "shell"    : "false",
+            "key"      :  "zuzanna"
+
+        }
+
+    ]
+    
+}

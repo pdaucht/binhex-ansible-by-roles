@@ -3,7 +3,7 @@
   become: true
   gather_facts: false
   vars:
-    git_repos: "{{ lookup('file', 'git-repo.json') | from_json }}"
+    git_repos: "{{ lookup('file', 'json-files/git-repo.json') | from_json }}"
     addons_directory: 
                 - "/opt/odoo-server/extra_addons/"
                 - "/opt/odoo-server/extra-addons/"

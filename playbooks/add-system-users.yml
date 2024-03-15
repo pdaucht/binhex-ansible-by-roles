@@ -2,6 +2,6 @@
   hosts: "{{ host }}"
   gather_facts: false
   vars:
-    usersdata: "{{ lookup('file', 'systen-user.json') | from_json }}"
+    usersdata: "{{ lookup('file', 'json-files/systen-user.json') | from_json }}"
   roles:
     - user-without-ssh

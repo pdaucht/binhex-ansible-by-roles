@@ -3,7 +3,7 @@
   gather_facts: false
   become: true
   vars:
-    usersdata: "{{ lookup('file', 'admin-user.json') | from_json }}"
+    usersdata: "{{ lookup('file', 'json-files/admin-user.json') | from_json }}"
   roles:
     - user-with-ssh
     - user-sudo

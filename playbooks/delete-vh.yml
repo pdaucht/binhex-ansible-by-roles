@@ -3,6 +3,6 @@
   become: true
   gather_facts: false
   vars:
-    data: "{{ lookup('file', 'dns.json') | from_json }}"
+    data: "{{ lookup('file', 'json-files/dns.json') | from_json }}"
   roles:
     - delete-nginx-vh
