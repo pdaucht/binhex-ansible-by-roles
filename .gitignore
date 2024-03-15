@@ -1,2 +1,2 @@
-playbooks/json-files/*.json
+*.json
 *.local
