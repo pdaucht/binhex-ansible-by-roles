@@ -4,7 +4,7 @@ Grant User permition to access to container through JUMP HOST
 ansible-playbook --extra-vars '{"jumphost":"daemon-pr.binhex.cloud", "host":"odoo16ce.binhex.cloud"}'
 
 Install zabbix
-ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud","zserver":"zabbix-server"}'
+ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud","zserver":"zabbix-server", "nodo":""}'
 
 Update Oca ADDONS & Change Oca ADDONS branch
 ansible-playbook --extra-vars '{"host":"daemon-pr.binhex.cloud", "odoov":"16.0"}'
